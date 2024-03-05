@@ -19,3 +19,9 @@ spec:
     automated:
       prune: true
       selfHeal: true
+  ignoreDifferences:
+    - group: deviceplugin.intel.com
+      kind: GpuDevicePlugin
+      name: intel-gpu-device-plugin
+      jsonPointers:
+          - /spec/resourceManager
