@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
+  name: cert-manager
   namespace: argocd # MUST be argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,11 +10,11 @@ spec:
   project: default
   source:
     path: .
-    repoURL: https://github.com/charlesthomas/homelab-grafana
+    repoURL: https://github.com/charlesthomas/homelab-cert-manager
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: grafana
+    namespace: cert-manager
   syncPolicy:
     automated:
       prune: true

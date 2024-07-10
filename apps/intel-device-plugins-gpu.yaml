@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
+  name: intel-device-plugins-gpu
   namespace: argocd # MUST be argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,11 +10,11 @@ spec:
   project: default
   source:
     path: .
-    repoURL: https://github.com/charlesthomas/homelab-grafana
+    repoURL: https://github.com/charlesthomas/homelab-intel-device-plugins-gpu
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: grafana
+    namespace: intel-device-plugins-gpu
   syncPolicy:
     automated:
       prune: true
@@ -22,3 +22,9 @@ spec:
     syncOptions:
     - ApplyOutOfSyncOnly=true
     - ServerSideApply=true
+  ignoreDifferences:
+    - group: deviceplugin.intel.com
+      kind: GpuDevicePlugin
+      name: intel-gpu-device-plugin
+      jsonPointers:
+          - /spec/resourceManager
