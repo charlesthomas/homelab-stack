@@ -22,3 +22,19 @@ spec:
     syncOptions:
     - ApplyOutOfSyncOnly=true
     - ServerSideApply=true
+  ignoreDifferences:
+    - group: admissionregistration.k8s.io
+      kind: MutatingWebhookConfiguration
+      name: cert-manager-webhook
+      jqPathExpressions:
+        - .webhooks[].clientConfig.caBundle
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      name: cert-manager-webhook
+      jqPathExpressions:
+        - .webhooks[].clientConfig.caBundle
+    - group: apps
+      kind: Deployment 
+      name: all
+      jqPathExpressions:
+        - .spec.template.spec.containers[].resources
