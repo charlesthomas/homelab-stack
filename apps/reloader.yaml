@@ -25,6 +25,6 @@ spec:
   ignoreDifferences:
     - group: apps
       kind: Deployment
-      name: reloader-reloader
+      name: reloader
       jqPathExpressions:
           - .spec.template.spec.containers[0].env[].valueFrom.resourceFieldRef.divisor
