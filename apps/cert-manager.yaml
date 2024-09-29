@@ -34,7 +34,6 @@ spec:
       jqPathExpressions:
         - .webhooks[].clientConfig.caBundle
     - group: apps
-      kind: Deployment 
-      name: all
+      kind: Deployment
       jqPathExpressions:
         - .spec.template.spec.containers[].resources
