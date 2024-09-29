@@ -22,3 +22,7 @@ spec:
     syncOptions:
     - ApplyOutOfSyncOnly=true
     - ServerSideApply=true
+  ignoreDifferences:
+    - kind: Service
+      jqPathExpressions:
+        - .spec.ports[].nodePort
