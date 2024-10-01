@@ -1,0 +1,24 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: disk-usage-monitor
+  namespace: argocd # MUST be argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: .
+    repoURL: https://github.com/charlesthomas/homelab-disk-usage-monitor
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: disk-usage-monitor
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - ApplyOutOfSyncOnly=true
+    - ServerSideApply=true
